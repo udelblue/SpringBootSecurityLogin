@@ -16,16 +16,15 @@ import com.example.service.UserService;
 
 @Controller
 public class PublicController {
-	
+
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value="/public/home", method = RequestMethod.GET)
-	public ModelAndView home(){
+	@RequestMapping(value = "/public/home", method = RequestMethod.GET)
+	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("public/home");
 		return modelAndView;
 	}
-	
 
 }
