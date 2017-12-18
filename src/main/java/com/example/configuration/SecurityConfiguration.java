@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -22,6 +23,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+
+	@Autowired
+	private AccessDeniedHandler accessDeniedHandler;
 
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;
@@ -38,13 +42,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
-				.antMatchers("/registration").permitAll().antMatchers("/public/**").permitAll().antMatchers("/admin/**")
+		http.authorizeRequests().antMatchers("/","/about", "/home").permitAll().antMatchers("/login").permitAll()
+				.antMatchers("/registration").permitAll().antMatchers("/admin/**")
 				.hasAuthority("ADMIN").antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated().and()
 				.csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/admin/home").usernameParameter("email").passwordParameter("password").and()
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
-				.exceptionHandling().accessDeniedPage("/access-denied");
+				.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+		;
 	}
 
 	@Override
