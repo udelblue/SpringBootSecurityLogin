@@ -25,7 +25,7 @@ public class UserController {
 		modelAndView.addObject("userName",
 				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with User Role");
-		modelAndView.setViewName("user/home");
+		modelAndView.setViewName("user");
 		return modelAndView;
 	}
 
