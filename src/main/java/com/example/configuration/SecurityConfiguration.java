@@ -52,8 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/admin/home").usernameParameter("email").passwordParameter("password").and()
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
-				.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-		;
+				.exceptionHandling().accessDeniedPage("/error/403");
+		
 	}
 
 	@Override
