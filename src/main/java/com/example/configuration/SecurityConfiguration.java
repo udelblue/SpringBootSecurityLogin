@@ -42,11 +42,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/","/about", "/home").permitAll().antMatchers("/login").permitAll()
-				.antMatchers("/registration").permitAll().antMatchers("/admin/**")
+		http.authorizeRequests().antMatchers("/").permitAll()
+				.antMatchers("/login").permitAll()
+				.antMatchers("/registration").permitAll()
+				.antMatchers("/home").permitAll()
+				.antMatchers("/about").permitAll()
+				.antMatchers("/admin/**")
 				.hasAuthority("ADMIN").antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated().and()
 				.csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
-				.defaultSuccessUrl("/admin").usernameParameter("email").passwordParameter("password").and()
+				.defaultSuccessUrl("/admin/home").usernameParameter("email").passwordParameter("password").and()
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
 				.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 		;
