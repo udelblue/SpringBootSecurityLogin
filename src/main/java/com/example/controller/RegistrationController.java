@@ -22,6 +22,12 @@ public class RegistrationController {
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		User userExists = userService.findUserByUsername(user.getUsername());
+		User emailExists = userService.findUserByEmail(user.getEmail());
+		if (emailExists != null) {
+			bindingResult.rejectValue("email", "error.user",
+					"There is already a user registered with the email provided");
+		}
+		
 		if (userExists != null) {
 			bindingResult.rejectValue("username", "error.user",
 					"There is already a user registered with the username provided");
