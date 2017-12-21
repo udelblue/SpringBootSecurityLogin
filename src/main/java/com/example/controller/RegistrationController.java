@@ -21,10 +21,10 @@ public class RegistrationController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		User userExists = userService.findUserByEmail(user.getEmail());
+		User userExists = userService.findUserByUsername(user.getUsername());
 		if (userExists != null) {
-			bindingResult.rejectValue("email", "error.user",
-					"There is already a user registered with the email provided");
+			bindingResult.rejectValue("username", "error.user",
+					"There is already a user registered with the username provided");
 		}
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");

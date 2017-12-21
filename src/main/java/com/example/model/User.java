@@ -35,6 +35,9 @@ public class User {
 	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
+	@Column(name = "username")
+	@NotEmpty(message = "*Please provide your username")
+	private String username;
 	@Column(name = "first_name")
 	@NotEmpty(message = "*Please provide your first name")
 	private String firstName;
@@ -101,6 +104,14 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
