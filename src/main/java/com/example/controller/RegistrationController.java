@@ -17,7 +17,7 @@ public class RegistrationController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -27,7 +27,7 @@ public class RegistrationController {
 			bindingResult.rejectValue("email", "error.user",
 					"There is already a user registered with the email provided");
 		}
-		
+
 		if (userExists != null) {
 			bindingResult.rejectValue("username", "error.user",
 					"There is already a user registered with the username provided");
@@ -52,6 +52,5 @@ public class RegistrationController {
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
-	
-	
+
 }

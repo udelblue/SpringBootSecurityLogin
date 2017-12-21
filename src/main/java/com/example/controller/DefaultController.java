@@ -27,14 +27,12 @@ public class DefaultController {
 		modelAndView.setViewName("home");
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = { "/about" }, method = RequestMethod.GET)
 	public ModelAndView about() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("about");
 		return modelAndView;
 	}
-	
 
 }

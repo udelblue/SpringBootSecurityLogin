@@ -25,11 +25,10 @@
 							href="#" th:href="@{/about}">About</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-					
+
 						<li th:if="${#authorization.expression('!isAuthenticated()')}">
 							<a href="/registration" th:href="@{/registration}"> <span
-								class="" aria-hidden="true"></span>&nbsp;Create
-								account
+								class="" aria-hidden="true"></span>&nbsp;Create account
 						</a>
 						</li>
 						<li th:if="${#authorization.expression('!isAuthenticated()')}">
@@ -39,7 +38,7 @@
 								in
 						</a>
 						</li>
-					
+
 
 						<li th:if="${#authorization.expression('isAuthenticated()')}">
 

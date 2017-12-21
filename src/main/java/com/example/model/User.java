@@ -27,7 +27,7 @@ public class User {
 	@Column(name = "user_id")
 	private int id;
 	@Column(name = "email")
-    @Email(message = "*Please provide a valid email")
+	@Email(message = "*Please provide a valid email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
 	@Column(name = "password")
@@ -39,10 +39,10 @@ public class User {
 	@NotEmpty(message = "*Please provide your username")
 	private String username;
 	@Column(name = "first_name")
-//	@NotEmpty(message = "*Please provide your first name")
+	// @NotEmpty(message = "*Please provide your first name")
 	private String firstName;
 	@Column(name = "last_name")
-	//@NotEmpty(message = "*Please provide your last name")
+	// @NotEmpty(message = "*Please provide your last name")
 	private String lastName;
 	@Column(name = "active")
 	private int active;
