@@ -17,5 +17,6 @@ build application
 4. java -jar demo-0.0.1-SNAPSHOT.jar
 
 - http://localhost:8080/registration
-- http://localhost:8080/login
+- http://localhost:8080/login  
+- http://localhost:8080/about
 
