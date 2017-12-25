@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<div th:fragment="header-no-nav">
+<div th:fragment="header-navless">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/main.css" />
 
@@ -10,7 +10,6 @@
 	<div th:fragment="header">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/main.css" />
-
 		<!-- this is header -->
 		<nav class="navbar navbar-inverse">
 			<div class="container">
@@ -25,7 +24,6 @@
 							href="#" th:href="@{/about}">About</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-
 						<li th:if="${#authorization.expression('!isAuthenticated()')}">
 							<a href="/registration" th:href="@{/registration}"> <span
 								class="" aria-hidden="true"></span>&nbsp;Create account
@@ -38,10 +36,7 @@
 								in
 						</a>
 						</li>
-
-
 						<li th:if="${#authorization.expression('isAuthenticated()')}">
-
 							<a href="../logout" th:href="@{#}" onclick="$('#form').submit();">
 								<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
 						</a>
