@@ -12,6 +12,32 @@
         <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
         <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
     </div>
+    
+    
+    <!--  begin subscribe -->
+    
+    <button class="btn btn-primary btn-large" id="stripe-demo">Subscribe</button>
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+var handler = StripeCheckout.configure({
+  key: "pk_test_1MCYLYHQDa4DwnBoKd5CqoaP",
+  image: "https://stripe.com/img/documentation/checkout/marketplace.png",
+  name: "Demo SaaS Site",
+  description: "Pro Subscription ($29 per month)",
+  panelLabel: "Subscribe",
+  allowRememberMe: false
+});
+
+document.getElementById('stripe-demo').addEventListener('click', function(e) {
+  handler.open();
+  e.preventDefault();
+});
+</script>
+    <!--  end subscribe -->
+    
+    
+    
 </div>
 <!-- /.container -->
 <div th:replace="fragments/footer :: footer"/>
