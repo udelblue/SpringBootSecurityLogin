@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.model.Role;
 import com.example.model.User;
 import com.example.service.UserService;
 
@@ -35,6 +39,12 @@ public class RegistrationController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
+			 @SuppressWarnings({ "rawtypes", "unchecked" })
+			Set<Role> roles = new HashSet();
+			 Role userRole = new Role();
+			 userRole.setRole("USER");
+			roles.add(userRole);
+			user.setRoles(roles);
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());

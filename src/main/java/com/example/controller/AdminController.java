@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.model.User;
 import com.example.service.UserService;
 
-@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasRole('ADMIN')")
 @Controller
 public class AdminController {
 
